@@ -19,7 +19,7 @@ require 'pry'
 #end
 
 
-File.open('trade-india-links.txt', 'w') do |f2|
+File.open('trade-india-links2.txt', 'w') do |f2|
   for i in 0..9
     if i==0
       url = "http://www.tradeindia.com/Seller/Machinery/Machine-Tools/"
