@@ -3,8 +3,7 @@ require 'open-uri'
 require 'pry'
 
 
-#websites = File.open('../trade-india-links-sample.txt').readlines
-websites = ['http://www.eskayindustries.com/']
+websites = File.open('data-tradeindia-links.txt').readlines
 regex = Regexp.new('/[\w.!#\$%+-]+@[\w-]+(?:\.[\w-]+)+/')
 
 websites.each do |website|
@@ -14,28 +13,24 @@ websites.each do |website|
 
   # Searching by css
   doc.css('.email_field').each do |email|
-    puts email + "  --- 1 ---"
-    emails.push(email)
+    emails.push(email) unless email.include?('tradeindia')
   end
 
   # Searching by mailto links
   selector = "//a[starts-with(@href, \"mailto:\")]/@href"
   nodes = doc.xpath selector
   addresses = nodes.collect {|n| n.value[7..-1]}
-  #Since mail to can have multiple addresses separated by commas
+  #Since mail-to can have multiple addresses separated by commas
   addresses.each do |address|
     address.split(',').each do |addr|
-      emails << addr
+      emails << addr unless addr.include?('tradeindia')
     end
   end
 
-
-
-  open('./email-output.txt', 'a') do |f|
+  open('data-tradeindia-emails.txt', 'a') do |f|
     f.puts emails.uniq
     puts emails.uniq
   end
-
 
 end
 
