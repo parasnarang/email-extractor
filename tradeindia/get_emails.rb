@@ -1,7 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 
-websites = File.open('data-tradeindia-links.txt').readlines
+websites = File.open('data-vendor-urls.txt').readlines
 regex = Regexp.new('/[\w.!#\$%+-]+@[\w-]+(?:\.[\w-]+)+/')
 
 websites.each do |website|
@@ -25,7 +25,7 @@ websites.each do |website|
     end
   end
 
-  File.open('data-tradeindia-emails.txt', 'a') do |f|
+  File.open('data-vendor-emails.txt', 'a') do |f|
     f.puts emails.uniq
     puts emails.uniq
   end

@@ -1,6 +1,6 @@
-echo "CHECKING IF input-tradeindia-category-links.txt EXISTS...";
-if [ ! -e "input-tradeindia-category-links.txt" ]; then
-  echo "input-tradeindia-category-links.txt not found! Aborting...";
+echo "CHECKING IF input-category-links.txt EXISTS...";
+if [ ! -e "input-category-links.txt" ]; then
+  echo "input-category-links.txt not found! Aborting...";
   exit;
 fi
 
@@ -23,7 +23,7 @@ echo "GETTING EMAILS FROM LINKS...";
 ruby get_emails.rb;
 
 echo "-------------------------------------------------";
-echo "Output File : data-tradeindia-emails.txt ";
+echo "Output File : data-vendor-emails.txt ";
 echo "-------------------------------------------------";
 echo "Completed Successfully.";
 

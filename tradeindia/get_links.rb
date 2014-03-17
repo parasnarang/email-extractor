@@ -1,8 +1,8 @@
 require 'nokogiri'
 require 'open-uri'
 
-filename = 'data-tradeindia-links.txt'
-categories = File.open('data-tradeindia-sub-category-links.txt').readlines
+filename = 'data-vendor-urls.txt'
+categories = File.open('data-sub-category-links.txt').readlines
 
 File.open(filename, 'a') do |f|
   categories.each do |category|
