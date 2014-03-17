@@ -6,7 +6,10 @@ categories = File.open('data-tradeindia-sub-category-links.txt').readlines
 
 File.open(filename, 'a') do |f|
   categories.each do |category|
-    for i in 0..9
+    doc = Nokogiri::HTML(open(category.strip))
+    last = doc.css("a[class='f4']").last[:href].scan( /\d+/ ).last.to_i
+    puts "Total pages : #{last}"
+    for i in 0..last
       if i==0
         url = category.strip
       else
