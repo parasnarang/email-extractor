@@ -1,17 +1,22 @@
 require 'nokogiri'
 require 'open-uri'
 
-url = 'https://facebook.com'
-filename = 'links-from-' + url.tr('^A-Za-z0-9', '') + '.txt'
+fail("Usage: ruby get_links_from_webpage.rb URL [URL ...]") if ARGV.empty?
 
-File.open(filename, 'w') do |f|
-    doc = Nokogiri::HTML(open(url))
+ARGV.each do |url|
+    filename = 'links-from-' + url.tr('^A-Za-z0-9', '') + '.txt'
 
-    doc.css("a[@target='_blank']").each do |link|
-      content = link.content
-      f.puts content if content.include?("http")
+    File.open(filename, 'w') do |f|
+        doc = Nokogiri::HTML(open(url))
+
+        hrefs = doc.css("a").map do |link|
+            if (href = link.attr("href")) && !href.empty?
+                URI::join(url, href)
+            end
+        end.compact.uniq
+        f.puts hrefs.join("\n")
+
+        puts "#{url} DONE"
+        puts "File created : #{filename}"
     end
-
-    puts "#{url} DONE"
-    puts "File created : #{filename}"
 end
