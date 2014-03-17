@@ -7,7 +7,7 @@ filename = 'data-sub-category-links.txt'
 
 File.open(filename, 'a') do |f|
   categories.each do |category|
-    doc = Nokogiri::HTML(open(category))
+    doc = Nokogiri::HTML(open(category.strip))
 
     doc.css("a[@class='categorylist']").each do |subcategory|
       content = website + subcategory[:href]

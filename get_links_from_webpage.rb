@@ -7,7 +7,7 @@ ARGV.each do |url|
     filename = 'links-from-' + url.tr('^A-Za-z0-9', '') + '.txt'
 
     File.open(filename, 'w') do |f|
-        doc = Nokogiri::HTML(open(url))
+        doc = Nokogiri::HTML(open(url.strip))
 
         hrefs = doc.css("a").map do |link|
             if (href = link.attr("href")) && !href.empty?
