@@ -2,7 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 
 website = 'http://www.tradeindia.com'
-categories = File.open('data-tradeindia-category-links.txt').readlines
+categories = File.open('input-tradeindia-category-links.txt').readlines
 filename = 'data-tradeindia-sub-category-links.txt'
 
 File.open(filename, 'a') do |f|
