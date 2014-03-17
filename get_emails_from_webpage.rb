@@ -1,7 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 
-websites = File.open('data-tradeindia-links.txt').readlines
+websites = ['http://website1', 'https://website2']
 regex = Regexp.new('/[\w.!#\$%+-]+@[\w-]+(?:\.[\w-]+)+/')
 
 websites.each do |website|
@@ -11,7 +11,7 @@ websites.each do |website|
 
   # Searching by css
   doc.css('.email_field').each do |email|
-    emails.push(email) unless email.include?('tradeindia')
+    emails.push(email)
   end
 
   # Searching by mailto links
@@ -21,11 +21,11 @@ websites.each do |website|
   #Since mail-to can have multiple addresses separated by commas
   addresses.each do |address|
     address.split(',').each do |addr|
-      emails << addr unless addr.include?('tradeindia')
+      emails << addr
     end
   end
 
-  File.open('data-tradeindia-emails.txt', 'a') do |f|
+  File.open('data-emails.txt', 'a') do |f|
     f.puts emails.uniq
     puts emails.uniq
   end
