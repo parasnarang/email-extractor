@@ -1,12 +1,12 @@
-echo "CHECKING IF data-tradeindia-category-links.txt EXISTS";
-if [ ! -e "data-tradeindia-category-links.txt" ]; then
-  echo "data-tradeindia-category-links.txt not found! Aborting...";
+echo "CHECKING IF input-tradeindia-category-links.txt EXISTS";
+if [ ! -e "input-tradeindia-category-links.txt" ]; then
+  echo "input-tradeindia-category-links.txt not found! Aborting...";
   exit;
 fi
 
 echo "CREATING BACKUP OF OLD DATA FILES";
-if [ ! -d "backup"]; then
-  mkdir backup;
+if [ ! -d "backup" ]; then
+  mkdir backup
 fi
 mv data-* backup/
 
