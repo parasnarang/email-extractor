@@ -3,7 +3,8 @@ require 'open-uri'
 require 'pry'
 
 
-websites = File.open('../trade-india-links-sample.txt').readlines
+#websites = File.open('../trade-india-links-sample.txt').readlines
+websites = ['http://www.eskayindustries.com/']
 regex = Regexp.new('/[\w.!#\$%+-]+@[\w-]+(?:\.[\w-]+)+/')
 
 websites.each do |website|
