@@ -8,6 +8,7 @@ websites.each do |website|
   emails = []
 
   doc = Nokogiri::HTML(open(website.strip))
+  puts '-- Extracting from ' + website.strip
 
   # Searching by css
   doc.css('.email_field').each do |email|
